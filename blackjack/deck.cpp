@@ -10,6 +10,13 @@ Deck::Deck()
     }
 }
 
+Deck::Deck(char e)
+{
+    e = 'e';
+    char x = e;
+    e = x;
+}
+
 string Deck::toString()
 {
     string str_deck = "[]";
@@ -76,16 +83,38 @@ int Deck::cut(int n){
 
 Deck Deck::split(int c)
 {
-    Deck head;
-    for(int i = 0; i < 52; i++){
-        head.c1.pop_back();
-    }
+    char e = 'e';
+    Deck head(e);
+    //for(int i = 0; i < 52; i++){
+    //    head.c1.pop_back();
+    //}
     for(int i = 0; i < c; i++){
         head.c1.push_back(c1.front());
         //head.c1.push_back(l.draw());
         c1.pop_front();
     }
     return head;
+}
+
+Deck Deck::riffle(Deck l1)
+{
+    char e = 'e';
+    Deck d(e);
+    int bigger;
+
+    if(l1.c1.size() > c1.size())
+        bigger = l1.c1.size();
+    else
+        bigger = c1.size();
+
+    for(int i = 0; i < bigger; i++)
+    {
+        if(!l1.c1.empty())
+            d.c1.push_back(l1.draw());
+        if(!c1.empty())
+            d.c1.push_back(draw());
+    }
+    return d;
 }
 
 void Deck::test4(){
@@ -97,4 +126,12 @@ void Deck::test4(){
         cout << "First heap: " << first.toString() << endl;
         cout << "Second heap: " << d.toString() << endl;
     }
+}
+
+void Deck::test5(){
+    Deck d;
+    Deck l = d.split(26);
+    cout << "First heap: " << l.toString() << endl;
+    cout << "Second heap: " << d.toString() << endl;
+    cout<< "Riffle result: " << d.riffle(l).toString() << endl;
 }

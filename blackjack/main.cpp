@@ -52,6 +52,9 @@ int main()
         cout << '\n';
     cout << endl;
     d.test4();
+    cout << endl;
+    cout << endl;
+    d.test5();
     return 0;
 }
 

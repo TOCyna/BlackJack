@@ -14,11 +14,14 @@ class Deck
 public:
     list<Card> c1;
     Deck();
+    Deck(char e);
     string toString();
     Card draw();
     int cut(int n);
     Deck split(int c);
     void test4();
+    Deck riffle(Deck l1);
+    void test5();
 };
 
 #endif // DECK_H
