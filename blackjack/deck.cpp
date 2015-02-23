@@ -60,7 +60,22 @@ int Deck::cut(int n){
     return c;
 }
 
-list<Card> Deck::split(list<Card> l, int c)
+Deck Deck::split(Deck l, int c)
 {
+    Deck head;
+    list<Card>::iterator it;
+    it = head.c1.begin();
+    for(int i = 0; i < c; i++, it++);
+    l.c1.splice(head.c1.begin(), head.c1, it, l.c1.end());
 
+    return head;
+}
+
+void Deck::test4(){
+    int c[3] = {0,26,52};
+    cout << "Cut = " << c[0] << endl;
+    Deck d;
+    Deck l = d.split(d, c[0]);
+    cout << "First heap: " << l.toString() << endl;
+    cout << "Second heap: " << d.toString() << endl;
 }

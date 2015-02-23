@@ -50,6 +50,8 @@ int main()
         for (it=l2.begin(); it!=l2.end(); ++it)
           cout << ' ' << it->toString();
         cout << '\n';
+    cout << endl;
+    d.test4();
     return 0;
 }
 

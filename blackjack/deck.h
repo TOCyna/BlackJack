@@ -9,14 +9,16 @@
 
 class Deck
 {
-private:
-    list<Card> c1;
+//private:
+//    list<Card> c1;
 public:
+    list<Card> c1;
     Deck();
     string toString();
     Card draw();
     int cut(int n);
-    list<Card> split(list<Card> l, int c);
+    Deck split(Deck l, int c);
+    void test4();
 };
 
 #endif // DECK_H
