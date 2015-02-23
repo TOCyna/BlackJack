@@ -17,7 +17,7 @@ public:
     string toString();
     Card draw();
     int cut(int n);
-    Deck split(Deck l, int c);
+    Deck split(int c);
     void test4();
 };
 

@@ -12,16 +12,16 @@ Deck::Deck()
 
 string Deck::toString()
 {
-    string str_deck;
-
+    string str_deck = "[]";
     list<Card>::iterator i;
-    str_deck = "[";
-    for (i=c1.begin(); i!= --c1.end(); ++i)
-        str_deck += i->toString() + ", ";
-    i = --c1.end();
-    string aux1 = i->toString();
-    str_deck += aux1 + "]";
-
+    if (!c1.empty()){
+        str_deck = "[";
+        for (i=c1.begin(); i!= --c1.end(); ++i)
+            str_deck += i->toString() + ", ";
+        i = --c1.end();
+        string aux1 = i->toString();
+        str_deck += aux1 + "]";
+    }
     return str_deck;
 }
 
@@ -60,22 +60,41 @@ int Deck::cut(int n){
     return c;
 }
 
-Deck Deck::split(Deck l, int c)
+/*Deck Deck::split(Deck l, int c)
 {
     Deck head;
     list<Card>::iterator it;
-    it = head.c1.begin();
-    for(int i = 0; i < c; i++, it++);
+    it = l.c1.begin();
+    for(int i = 0; i < 52; i++){
+        head.c1.pop_back();
+    }
+    for(int i = 0; i < c; i++)
+        it++;
     l.c1.splice(head.c1.begin(), head.c1, it, l.c1.end());
+    return head;
+}*/
 
+Deck Deck::split(int c)
+{
+    Deck head;
+    for(int i = 0; i < 52; i++){
+        head.c1.pop_back();
+    }
+    for(int i = 0; i < c; i++){
+        head.c1.push_back(c1.front());
+        //head.c1.push_back(l.draw());
+        c1.pop_front();
+    }
     return head;
 }
 
 void Deck::test4(){
     int c[3] = {0,26,52};
-    cout << "Cut = " << c[0] << endl;
-    Deck d;
-    Deck l = d.split(d, c[0]);
-    cout << "First heap: " << l.toString() << endl;
-    cout << "Second heap: " << d.toString() << endl;
+    for (int i = 0; i < 3; i++){
+        cout << "Cut = " << c[i] << endl;
+        Deck d;
+        Deck first = d.split(c[i]);
+        cout << "First heap: " << first.toString() << endl;
+        cout << "Second heap: " << d.toString() << endl;
+    }
 }
