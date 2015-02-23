@@ -28,6 +28,28 @@ int main()
 
     cout << d.cut(52) << endl;
 
+    list<Card> l1;
+    list<Card> l2;
+    list<Card>::iterator it;
+
+    l1.push_back(c0);
+    l1.push_back(c1);
+    l1.push_back(c2);
+    l1.push_back(c3);
+
+    it = l1.begin();
+    it++;
+
+    l1.splice(l2.begin(), l1, it, l1.end());
+
+    cout << "mylist1 contains:";
+      for (it=l1.begin(); it!=l1.end(); ++it)
+        cout << ' ' << it->toString();
+      cout << '\n';
+    cout << "mylist2 contains:";
+        for (it=l2.begin(); it!=l2.end(); ++it)
+          cout << ' ' << it->toString();
+        cout << '\n';
     return 0;
 }
 

@@ -16,6 +16,7 @@ public:
     string toString();
     Card draw();
     int cut(int n);
+    list<Card> split(list<Card> l, int c);
 };
 
 #endif // DECK_H

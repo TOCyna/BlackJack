@@ -59,3 +59,8 @@ int Deck::cut(int n){
     }
     return c;
 }
+
+list<Card> Deck::split(list<Card> l, int c)
+{
+
+}
