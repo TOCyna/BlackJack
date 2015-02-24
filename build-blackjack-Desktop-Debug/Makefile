@@ -47,10 +47,12 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../blackjack/main.cpp \
 		../blackjack/card.cpp \
-		../blackjack/deck.cpp 
+		../blackjack/deck.cpp \
+		../blackjack/blackjack.cpp 
 OBJECTS       = main.o \
 		card.o \
-		deck.o
+		deck.o \
+		blackjack.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -295,6 +297,9 @@ card.o: ../blackjack/card.cpp ../blackjack/card.h
 deck.o: ../blackjack/deck.cpp ../blackjack/deck.h \
 		../blackjack/card.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o deck.o ../blackjack/deck.cpp
+
+blackjack.o: ../blackjack/blackjack.cpp ../blackjack/blackjack.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o blackjack.o ../blackjack/blackjack.cpp
 
 ####### Install
 

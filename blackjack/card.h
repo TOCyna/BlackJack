@@ -8,6 +8,7 @@ using namespace std;
 
 class Card
 {
+friend class Blackjack;
 private:
     char naipe;
     int valor;

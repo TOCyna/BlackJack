@@ -151,7 +151,7 @@ void Deck::test5(){
     cout << "] \n";
 }
 
-void Deck::riffleShuffle(int n)
+/*void Deck::riffleShuffle(int n)
 {
     int c;
     list<Card> l;
@@ -167,5 +167,6 @@ void Deck::test6(){
     cout << d.toString() << endl;
     d.riffleShuffle(7);
     cout << d.toString() << endl;
-}
+}*/
+
 

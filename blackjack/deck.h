@@ -9,10 +9,10 @@
 
 class Deck
 {
-//private:
-//    list<Card> c1;
-public:
+private:
     list<Card> c1;
+public:
+    //list<Card> c1;
     Deck();
     Deck(char e);
     string toString();

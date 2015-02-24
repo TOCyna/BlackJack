@@ -1,6 +1,5 @@
 #include <iostream>
-#include <card.h>
-#include <deck.h>
+#include <blackjack.h>
 
 using namespace std;
 
@@ -56,8 +55,17 @@ int main()
     cout << endl;
     cout << "teste 5" << endl;
     d.test5();
-    cout << "teste 6" << endl;
-    d.test6();
-
+    //cout << "teste 6" << endl;
+    //d.test6();
+    cout << "teste 7: "<< endl;
+    Blackjack b;
+    b.test7();
+    cout << "teste 8:" << endl;
+    b.test8();
+    cout << "Human: " << endl;
+    Deck s;
+    //b.humanPlayer(s);
+    //b.computerPlayer(s, 20);
+    b.game();
 }
 
