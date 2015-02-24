@@ -99,10 +99,8 @@ list<Card> Blackjack::computerPlayer(Deck d, int humanScore)
         roboticHand.push_back(d.draw());
         sum = getScore(roboticHand);
     } while(sum != 21 || sum < humanScore);
-    cout << "Computer score: " << sum << endl;
 
     return roboticHand;
-
 }
 
 void Blackjack::game()
