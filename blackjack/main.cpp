@@ -54,7 +54,10 @@ int main()
     d.test4();
     cout << endl;
     cout << endl;
+    cout << "teste 5" << endl;
     d.test5();
-    return 0;
+    cout << "teste 6" << endl;
+    d.test6();
+
 }
 

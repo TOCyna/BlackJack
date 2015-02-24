@@ -18,10 +18,12 @@ public:
     string toString();
     Card draw();
     int cut(int n);
-    Deck split(int c);
+    list<Card> split(list<Card> &l, int c);
     void test4();
-    Deck riffle(Deck l1);
+    list<Card> riffle(list<Card> l1, list<Card> l2);
     void test5();
+    void riffleShuffle(int n);
+    void test6();
 };
 
 #endif // DECK_H

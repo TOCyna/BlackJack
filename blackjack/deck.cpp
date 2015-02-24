@@ -81,40 +81,36 @@ int Deck::cut(int n){
     return head;
 }*/
 
-Deck Deck::split(int c)
+list<Card> Deck::split(list<Card> &l, int c)
 {
-    char e = 'e';
-    Deck head(e);
-    //for(int i = 0; i < 52; i++){
-    //    head.c1.pop_back();
-    //}
+    list<Card> r;
     for(int i = 0; i < c; i++){
-        head.c1.push_back(c1.front());
-        //head.c1.push_back(l.draw());
-        c1.pop_front();
+        r.push_back(l.front());
+        l.pop_front();
     }
-    return head;
+    return r;
 }
 
-Deck Deck::riffle(Deck l1)
+list<Card> Deck::riffle(list<Card> l1, list<Card> l2)
 {
-    char e = 'e';
-    Deck d(e);
+    list<Card> cat;
     int bigger;
 
-    if(l1.c1.size() > c1.size())
-        bigger = l1.c1.size();
+    if(l1.size() > l2.size())
+        bigger = l1.size();
     else
-        bigger = c1.size();
+        bigger = l2.size();
 
     for(int i = 0; i < bigger; i++)
     {
-        if(!l1.c1.empty())
-            d.c1.push_back(l1.draw());
-        if(!c1.empty())
-            d.c1.push_back(draw());
+        if(!l1.empty())
+            cat.push_back(l1.front());
+            l1.pop_front();
+        if(!l2.empty())
+            cat.push_back(l2.front());
+            l2.pop_front();
     }
-    return d;
+    return cat;
 }
 
 void Deck::test4(){
@@ -122,16 +118,54 @@ void Deck::test4(){
     for (int i = 0; i < 3; i++){
         cout << "Cut = " << c[i] << endl;
         Deck d;
-        Deck first = d.split(c[i]);
-        cout << "First heap: " << first.toString() << endl;
-        cout << "Second heap: " << d.toString() << endl;
+        list<Card>::iterator it;
+        list<Card> first = d.split(d.c1, c[i]);
+        cout << "First heap: " << endl << "[";
+        for (it=first.begin(); it!=first.end(); ++it)
+          cout << " " << it->toString();
+        cout << "] \n";
+        cout << "Second heap: " << endl << "[";
+        for (it=d.c1.begin(); it!=d.c1.end(); ++it)
+                  cout << " " << it->toString();
+                cout << "] \n";
     }
 }
 
 void Deck::test5(){
     Deck d;
-    Deck l = d.split(26);
-    cout << "First heap: " << l.toString() << endl;
-    cout << "Second heap: " << d.toString() << endl;
-    cout<< "Riffle result: " << d.riffle(l).toString() << endl;
+    list<Card>::iterator it;
+    list<Card> aux;
+    list<Card> l = d.split(d.c1, 26);
+    cout << "First heap: " << endl << "[";
+    for (it=l.begin(); it!=l.end(); ++it)
+      cout << " " << it->toString();
+    cout << "] \n";
+    cout << "Second heap: " << endl << "[";
+    for (it=d.c1.begin(); it!=d.c1.end(); ++it)
+              cout << " " << it->toString();
+            cout << "] \n";
+    aux = d.riffle(l, d.c1);
+    cout<< "Riffle result: " << endl << "[";
+    for (it=aux.begin(); it!=aux.end(); ++it)
+              cout << " " << it->toString();
+    cout << "] \n";
 }
+
+void Deck::riffleShuffle(int n)
+{
+    int c;
+    list<Card> l;
+    for (int i = 0; i < n; i++){
+        c = cut(52);
+        l = split(c1, c);
+        c1 = riffle(l, c1);
+    }
+}
+
+void Deck::test6(){
+    Deck d;
+    cout << d.toString() << endl;
+    d.riffleShuffle(7);
+    cout << d.toString() << endl;
+}
+
