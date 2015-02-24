@@ -64,8 +64,10 @@ int main()
     b.test8();
     cout << "Human: " << endl;
     Deck s;
+    cout << "teste 6" << endl;
+    s.test6();
     //b.humanPlayer(s);
     //b.computerPlayer(s, 20);
-    b.game();
+    //b.game();
 }
 

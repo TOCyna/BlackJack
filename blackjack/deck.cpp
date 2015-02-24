@@ -2,6 +2,9 @@
 
 Deck::Deck()
 {
+    //set a seed to cut
+    srand((unsigned)time(NULL));
+
     for (int i=0; i<4; i++){
         for (int j=1; j<14; j++){
             Card aux(i,j);
@@ -45,7 +48,6 @@ Card Deck::draw()
 int Deck::cut(int n){
     int c;
     double aux_rand;
-    srand(time(NULL));
 
     aux_rand = ((double)rand() / (RAND_MAX+1.0));
     double sum = 0;
@@ -66,20 +68,6 @@ int Deck::cut(int n){
     }
     return c;
 }
-
-/*Deck Deck::split(Deck l, int c)
-{
-    Deck head;
-    list<Card>::iterator it;
-    it = l.c1.begin();
-    for(int i = 0; i < 52; i++){
-        head.c1.pop_back();
-    }
-    for(int i = 0; i < c; i++)
-        it++;
-    l.c1.splice(head.c1.begin(), head.c1, it, l.c1.end());
-    return head;
-}*/
 
 list<Card> Deck::split(list<Card> &l, int c)
 {
@@ -113,7 +101,7 @@ list<Card> Deck::riffle(list<Card> l1, list<Card> l2)
     return cat;
 }
 
-void Deck::test4(){
+/*void Deck::test4(){
     int c[3] = {0,26,52};
     for (int i = 0; i < 3; i++){
         cout << "Cut = " << c[i] << endl;
@@ -128,6 +116,32 @@ void Deck::test4(){
         for (it=d.c1.begin(); it!=d.c1.end(); ++it)
                   cout << " " << it->toString();
                 cout << "] \n";
+    }
+}*/
+
+void Deck::test4(){
+    int c[3] = {0,26,52};
+
+    for(int i = 0; i<3; i++){
+        cout << "Cut = " << c[i] << endl;
+        Deck d;
+        list<Card> l = split(d.c1,c[i]);
+        list<Card>::iterator it = l.begin();
+        list<Card>::iterator itl = d.c1.begin();
+
+        cout << "First heap: ";
+        while(it != l.end()){
+            cout << (*it).toString() << " ";
+            it++;
+        }
+        cout << endl;
+
+        cout << "Second heap: ";
+        while(itl != d.c1.end()){
+            cout << (*itl).toString() << " ";
+            itl++;
+        }
+        cout << endl;
     }
 }
 
@@ -151,22 +165,30 @@ void Deck::test5(){
     cout << "] \n";
 }
 
-/*void Deck::riffleShuffle(int n)
+void Deck::riffleShuffle(int n)
 {
     int c;
     list<Card> l;
     for (int i = 0; i < n; i++){
         c = cut(52);
+
+        cout << "\n\n C:" << c << "\n\n";
+
         l = split(c1, c);
-        c1 = riffle(l, c1);
+
+        //cout << "\n\n C:" << c << "\n\n";
+
+        //c1 = riffle(l, c1);
     }
 }
 
 void Deck::test6(){
-    Deck d;
-    cout << d.toString() << endl;
-    d.riffleShuffle(7);
-    cout << d.toString() << endl;
-}*/
+    //Deck d;
+    cout << toString() << endl;
+    //cout << c1.riffleShuffle(7) << endl;
+    //cout << endl;
+    riffleShuffle(7);
+    //cout << toString() << endl;
+}
 
 

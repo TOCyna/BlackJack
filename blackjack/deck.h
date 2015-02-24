@@ -11,6 +11,7 @@ class Deck
 {
 private:
     list<Card> c1;
+    bool seedHasBeenSet;
 public:
     Deck();
     Deck(char e);
