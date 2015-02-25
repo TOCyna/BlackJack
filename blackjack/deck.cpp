@@ -94,13 +94,13 @@ list<Card> Deck::riffle(list<Card> l1, list<Card> l2)
 
     for(int i = 0; i < bigger; i++)
     {
-        if(!l1.empty()){
-            cat.push_back(l1.front());
-            l1.pop_front();
-        }
         if(!l2.empty()){
             cat.push_back(l2.front());
             l2.pop_front();
+        }
+        if(!l1.empty()){
+            cat.push_back(l1.front());
+            l1.pop_front();
         }
     }
     return cat;
