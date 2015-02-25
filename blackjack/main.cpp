@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello World!" << endl;
+    /*cout << "Hello World!" << endl;
     Card card(3, 13);
     cout << card.toString() << endl;
     Card c0(0,1);
@@ -62,12 +62,17 @@ int main()
     b.test7();
     cout << "teste 8:" << endl;
     b.test8();
-    cout << "Human: " << endl;
+    //cout << "Human: " << endl;
     Deck s;
     cout << "teste 6" << endl;
     s.test6();
+    cout << endl;
     //b.humanPlayer(s);
     //b.computerPlayer(s, 20);
-    //b.game();
+    //b.game();*/
+    Blackjack b;
+    b.game();
+
+    return 0;
 }
 

@@ -13,7 +13,7 @@ public:
     int getScore(list<Card> l);
     void test8();
     char getCommand();
-    list<Card> humanPlayer(Deck d);
+    list<Card> humanPlayer(Deck &d);
     list<Card> computerPlayer(Deck d, int humanScore);
     void game();
 };

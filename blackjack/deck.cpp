@@ -72,10 +72,13 @@ int Deck::cut(int n){
 list<Card> Deck::split(list<Card> &l, int c)
 {
     list<Card> r;
+    list<Card>::iterator it;
     for(int i = 0; i < c; i++){
         r.push_back(l.front());
         l.pop_front();
     }
+    //for (it=r.begin(); it!=r.end(); ++it)
+      //cout << ' ' << it->toString();
     return r;
 }
 
@@ -91,12 +94,14 @@ list<Card> Deck::riffle(list<Card> l1, list<Card> l2)
 
     for(int i = 0; i < bigger; i++)
     {
-        if(!l1.empty())
+        if(!l1.empty()){
             cat.push_back(l1.front());
             l1.pop_front();
-        if(!l2.empty())
+        }
+        if(!l2.empty()){
             cat.push_back(l2.front());
             l2.pop_front();
+        }
     }
     return cat;
 }
@@ -172,23 +177,23 @@ void Deck::riffleShuffle(int n)
     for (int i = 0; i < n; i++){
         c = cut(52);
 
-        cout << "\n\n C:" << c << "\n\n";
+        //cout << "\n\n C:" << c << "\n\n";
 
         l = split(c1, c);
 
         //cout << "\n\n C:" << c << "\n\n";
 
-        //c1 = riffle(l, c1);
+        c1 = riffle(l, c1);
     }
 }
 
 void Deck::test6(){
-    //Deck d;
-    cout << toString() << endl;
-    //cout << c1.riffleShuffle(7) << endl;
-    //cout << endl;
-    riffleShuffle(7);
+    Deck d;
     //cout << toString() << endl;
+    d.riffleShuffle(7);
+    cout << d.toString();
+    d.riffleShuffle(7);
+    cout << d.toString();
 }
 
 

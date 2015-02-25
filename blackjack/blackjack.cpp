@@ -65,7 +65,7 @@ char Blackjack::getCommand(){
 return c;
 }
 
-list<Card> Blackjack::humanPlayer(Deck d)
+list<Card> Blackjack::humanPlayer(Deck &d)
 {
     list<Card> hand;
     list<Card>::iterator it;
@@ -93,13 +93,19 @@ list<Card> Blackjack::humanPlayer(Deck d)
 list<Card> Blackjack::computerPlayer(Deck d, int humanScore)
 {
     list<Card> roboticHand;
-    int sum;
+    int sum = 0;
+    list<Card>::iterator it;
 
-    do {
+    cout << "Computer: " << endl;
+    while(sum < humanScore && sum <=21) {
         roboticHand.push_back(d.draw());
         sum = getScore(roboticHand);
-    } while(sum != 21 || sum < humanScore);
-    cout << "Computer score: " << sum << endl;
+        cout << "[";
+        for (it=roboticHand.begin(); it!=roboticHand.end(); ++it)
+            cout << ' ' << it->toString();
+        cout << " ]" << " -- Score: " << sum;
+        cout << endl;
+    }
 
     return roboticHand;
 
@@ -110,14 +116,18 @@ void Blackjack::game()
     Deck d;
     int humanScore, computerScore;
 
-    //d.riffleShuffle(7);
-    humanScore = getScore(humanPlayer(d));
+    d.riffleShuffle(7);
+        humanScore = getScore(humanPlayer(d));
     if (humanScore < 22){
         computerScore = getScore (computerPlayer(d, humanScore));
         if (humanScore > computerScore)
             cout << "You won! Your score was " << humanScore << ", while the computer scored " << computerScore << endl;
-        else if (humanScore < computerScore)
-            cout << "You lost, noob! Your score was " << humanScore << ", while the computer scored " << computerScore << endl;
+        else if (humanScore < computerScore){
+            if (computerScore > 21)
+                cout << "You won! Your score was " << humanScore << ", while the computer scored " << computerScore << endl;
+            else
+                cout << "You lost, noob! Your score was " << humanScore << ", while the computer scored " << computerScore << endl;
+        }
         else
             cout << "It's a draw! Both of you scored " << humanScore << endl;
     }
