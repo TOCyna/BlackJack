@@ -2,3 +2,4 @@
 *.user
 blackjack/build-blackjack-Desktop-Debug/Makefile
 blackjack/build-blackjack-Desktop-Debug/blackjack
+*.autosave
