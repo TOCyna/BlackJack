@@ -1,5 +1,14 @@
 #include "card.h"
 
+int Card::getValor()
+{
+    int valor;
+
+    valor = this->valor;
+
+    return valor;
+}
+
 Card::Card(int naipe, int valor)
 {
     if (valor < 0)
@@ -22,9 +31,6 @@ Card::Card(int naipe, int valor)
     else
         cout << "\nInvalid 'naipe' value\n";
 
-    //Test
-    //cout << this->naipe << endl;
-    //cout << this->valor << endl;
 }
 
 string Card::toString()
@@ -37,9 +43,6 @@ string Card::toString()
     ostringstream convert;
     convert << valor;
     name += convert.str();
-
-    //Test
-    //cout << name << endl;
 
     return name;
 }

@@ -2,15 +2,17 @@
 
 Blackjack::Blackjack()
 {
+    humanPoints = 0;
+    computerPoints = 0;
 }
 
 int Blackjack::getPoints(Card c)
 {
     int points;
 
-    if(c.valor > 0 && c.valor < 11)
-        points = c.valor;
-    else if(c.valor > 10)
+    if(c.getValor() > 0 && c.getValor() < 11)
+        points = c.getValor();
+    else if(c.getValor() > 10)
         points = 10;
 
     return points;
@@ -84,9 +86,10 @@ list<Card> Blackjack::humanPlayer(Deck &d)
         cout << " ]" << " -- Score: " << sum;
         cout << endl;
     }
-    if(sum > 21)
+    if(sum > 21){
         cout << "You lost, your score is above 21, noob " << endl;
-
+        computerPoints++;
+    }
     return hand;
 }
 
@@ -97,7 +100,7 @@ list<Card> Blackjack::computerPlayer(Deck d, int humanScore)
     list<Card>::iterator it;
 
     cout << "Computer: " << endl;
-    while(sum < humanScore && sum <=21) {
+    while(sum <= humanScore && sum < 21) {
         roboticHand.push_back(d.draw());
         sum = getScore(roboticHand);
         cout << "[";
@@ -113,23 +116,38 @@ list<Card> Blackjack::computerPlayer(Deck d, int humanScore)
 
 void Blackjack::game()
 {
+    cout << string(50, '\n');
     Deck d;
     int humanScore, computerScore;
+    char playAgain;
 
     d.riffleShuffle(7);
-        humanScore = getScore(humanPlayer(d));
-    if (humanScore < 22){
-        computerScore = getScore (computerPlayer(d, humanScore));
-        if (humanScore > computerScore)
-            cout << "You won! Your score was " << humanScore << ", while the computer scored " << computerScore << endl;
-        else if (humanScore < computerScore){
-            if (computerScore > 21)
-                cout << "You won! Your score was " << humanScore << ", while the computer scored " << computerScore << endl;
-            else
-                cout << "You lost, noob! Your score was " << humanScore << ", while the computer scored " << computerScore << endl;
-        }
-        else
-            cout << "It's a draw! Both of you scored " << humanScore << endl;
-    }
 
+    cout << "======= BLACKJACK =======\n== powered by TEAM OCD ==\n";
+    cout << "GAME POINTS\nYOU: " << humanPoints << "\nCOMPUTER: " << computerPoints << endl;
+
+    humanScore = getScore(humanPlayer(d));
+
+    if (humanScore < 22){
+
+        computerScore = getScore (computerPlayer(d, humanScore));
+
+        if(computerScore > 21){
+            cout << "You won! Your score was " << humanScore << ", while the computer scored " << computerScore << endl;
+            humanPoints++;
+        }
+        else if (humanScore == computerScore) {
+            cout << "It's a draw! Both of you scored " << humanScore << endl;
+        }
+        else {
+            cout << "You lost, noob! Your score was " << humanScore << ", while the computer scored " << computerScore << endl;
+            computerPoints++;
+        }
+    }
+    cout << "Do you wanna play again? [y or n] ";
+    while(playAgain != 'y' && playAgain != 'n'){
+        cin >> playAgain;
+    }
+    if (playAgain == 'y')
+        game();
 }

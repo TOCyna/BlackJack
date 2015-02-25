@@ -77,8 +77,6 @@ list<Card> Deck::split(list<Card> &l, int c)
         r.push_back(l.front());
         l.pop_front();
     }
-    //for (it=r.begin(); it!=r.end(); ++it)
-      //cout << ' ' << it->toString();
     return r;
 }
 
@@ -105,24 +103,6 @@ list<Card> Deck::riffle(list<Card> l1, list<Card> l2)
     }
     return cat;
 }
-
-/*void Deck::test4(){
-    int c[3] = {0,26,52};
-    for (int i = 0; i < 3; i++){
-        cout << "Cut = " << c[i] << endl;
-        Deck d;
-        list<Card>::iterator it;
-        list<Card> first = d.split(d.c1, c[i]);
-        cout << "First heap: " << endl << "[";
-        for (it=first.begin(); it!=first.end(); ++it)
-          cout << " " << it->toString();
-        cout << "] \n";
-        cout << "Second heap: " << endl << "[";
-        for (it=d.c1.begin(); it!=d.c1.end(); ++it)
-                  cout << " " << it->toString();
-                cout << "] \n";
-    }
-}*/
 
 void Deck::test4(){
     int c[3] = {0,26,52};
@@ -176,13 +156,7 @@ void Deck::riffleShuffle(int n)
     list<Card> l;
     for (int i = 0; i < n; i++){
         c = cut(52);
-
-        //cout << "\n\n C:" << c << "\n\n";
-
         l = split(c1, c);
-
-        //cout << "\n\n C:" << c << "\n\n";
-
         c1 = riffle(l, c1);
     }
 }

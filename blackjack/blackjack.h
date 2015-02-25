@@ -6,6 +6,8 @@
 
 class Blackjack
 {
+private:
+    int humanPoints, computerPoints;
 public:
     Blackjack();
     int getPoints(Card c);

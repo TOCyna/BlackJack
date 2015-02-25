@@ -8,11 +8,11 @@ using namespace std;
 
 class Card
 {
-friend class Blackjack;
 private:
     char naipe;
     int valor;
 public:
+    int getValor();
     Card(int naipe, int valor);
     string toString();
 };
